@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@1.0.0"
+        }
+      }
+    </script>
+</head>
+<body>
+    <div id="star-bg">
+        <div id="stars1"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+    <div id="shooting-stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+
+    <!-- Home Page -->
+    <main id="home-page" class="page container">
+        <h1>Welcome to Pixshop</h1>
+        <p class="subtitle">Your AI-powered creative studio. Choose a tool to begin.</p>
+        <div class="tool-selection">
+            <div id="go-to-text-to-image" class="tool-card" role="button" tabindex="0">
+                <h2>Text-to-Image</h2>
+                <p>Create stunning, original images from just a text description. Let your imagination run wild.</p>
+            </div>
+            <div id="go-to-image-to-image" class="tool-card" role="button" tabindex="0">
+                <h2>Image-to-Image</h2>
+                <p>Upload your own photo and transform it with a prompt. Change backgrounds, add elements, and more.</p>
+            </div>
+        </div>
+        <div class="about-section">
+            <h3>About This Tool</h3>
+            <p><strong>Pixshop</strong> leverages cutting-edge generative AI to bring your creative ideas to life. Whether you're an artist looking for inspiration, a designer prototyping concepts, or just having fun, our tools provide a seamless and powerful creative experience. The <strong>Text-to-Image</strong> model generates entirely new visuals based on your words, while the <strong>Image-to-Image</strong> model gives you the power to edit and reimagine existing photos with unparalleled realism.</p>
+        </div>
+    </main>
+
+    <!-- Text-to-Image Page -->
+    <main id="text-to-image-page" class="page container hidden">
+        <button class="back-button" data-target="home-page" aria-label="Back to Home">&larr; Home</button>
+        <h1>Text-to-Image Generation</h1>
+        <form id="text-prompt-form">
+            <textarea id="text-prompt-input" placeholder="A sleek black panther on a salt flat..." required aria-label="Image prompt" rows="3"></textarea>
+            <button type="submit" id="text-generate-button">Generate</button>
+        </form>
+        <div id="text-loading-indicator" class="hidden">
+            <div class="spinner"></div>
+            <p>Generating images...</p>
+        </div>
+        <div id="text-image-gallery"></div>
+    </main>
+
+    <!-- Image-to-Image Page -->
+    <main id="image-to-image-page" class="page container hidden">
+        <button class="back-button" data-target="home-page" aria-label="Back to Home">&larr; Home</button>
+        <h1>Image-to-Image Editing</h1>
+        <div class="input-area">
+            <div class="upload-wrapper">
+                <div id="image-preview-container" class="hidden">
+                    <img id="image-preview" src="#" alt="Image preview" />
+                    <button id="remove-image-button" aria-label="Remove image">&times;</button>
+                </div>
+                <label for="image-upload-input" id="upload-label" role="button">
+                    <span>Upload Image</span>
+                </label>
+                <input type="file" id="image-upload-input" accept="image/*" class="hidden-input">
+            </div>
+            <form id="image-prompt-form">
+                <textarea id="image-prompt-input" placeholder="Change the background to a bustling city..." required aria-label="Image editing prompt" rows="3"></textarea>
+                <button type="submit" id="image-generate-button">Generate</button>
+            </form>
+        </div>
+        <div id="image-loading-indicator" class="hidden">
+            <div class="spinner"></div>
+            <p>Enhancing your image...</p>
+        </div>
+        <div id="image-edit-gallery"></div>
+    </main>
+
+    <!-- Lightbox for viewing images -->
+    <div id="lightbox" class="lightbox hidden">
+      <span class="lightbox-close" role="button" aria-label="Close image viewer">&times;</span>
+      <img class="lightbox-content" id="lightbox-img" alt="Enlarged view">
+    </div>
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>
